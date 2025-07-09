@@ -41,8 +41,11 @@ app.use("/uploads", express.static(uploadsPath));
 
 // ✅ Serve Frontend (React build)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static(path.join(__dirname, "../public")));
   app.use(express.static(path.join(__dirname, "../client/build")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.join(__dirname, "../client/build/index.html"));
+  });
 }
 
 // ✅ Health Check
@@ -73,8 +76,8 @@ app.use("/api/reviews", require("./routes/reviews.routes"));
 // ✅ Fallback to React frontend for any other route
 if (process.env.NODE_ENV === "production") {
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client/build/index.html"));
-  });
+    res.sendFile(path.join(__dirname, "../public/index.html"))
+  })
 }
 
 // ✅ Error Handler
