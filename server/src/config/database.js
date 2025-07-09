@@ -1,50 +1,28 @@
-const mysql = require("mysql2/promise")
+const mysql = require("mysql2/promise");
 
-// Railway provides DATABASE_URL in production, fallback to individual vars for dev
-const getDatabaseConfig = () => {
-  // Production: Railway provides DATABASE_URL
-  if (process.env.DATABASE_URL) {
-    const url = new URL(process.env.DATABASE_URL)
-    return {
-      host: url.hostname,
-      port: url.port || 3306,
-      user: url.username,
-      password: url.password,
-      database: url.pathname.slice(1), // Remove leading slash
-      waitForConnections: true,
-      connectionLimit: 10,
-      queueLimit: 0,
-      ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false,
-    }
-  }
-
-  // Development: Use individual environment variables
-  return {
-    host: process.env.DB_HOST || "localhost",
-    user: process.env.DB_USER || "root",
-    password: process.env.DB_PASSWORD || "",
-    database: process.env.DB_NAME || "kulturaview",
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0,
-  }
-}
-
-const pool = mysql.createPool(getDatabaseConfig())
+const pool = mysql.createPool({
+  host: process.env.DB_HOST || "localhost",
+  port: process.env.DB_PORT || 3306,
+  user: process.env.DB_USER || "root",
+  password: process.env.DB_PASSWORD || "",
+  database: process.env.DB_NAME || "kulturaview",
+  waitForConnections: true,
+  connectionLimit: 10,
+  queueLimit: 0,
+  ssl: process.env.NODE_ENV === "production" ? { rejectUnauthorized: false } : false, // Add this if needed by Railway
+});
 
 // Test database connection
 const testConnection = async () => {
   try {
-    const connection = await pool.getConnection()
-    console.log(`✅ Database connected successfully (${process.env.NODE_ENV || "development"})`)
-    connection.release()
+    const connection = await pool.getConnection();
+    console.log(`✅ Database connected successfully (${process.env.NODE_ENV || "development"})`);
+    connection.release();
   } catch (error) {
-    console.error("❌ Database connection failed:", error.message)
-    if (process.env.NODE_ENV !== "production") {
-      console.log("💡 Make sure MySQL is running and credentials are correct in .env file")
-    }
+    console.error("❌ Database connection failed:", error.message);
+    console.log("💡 Make sure your Railway MySQL plugin credentials are correct");
   }
-}
+};
 
 // Initialize database tables
 const initDatabase = async () => {
