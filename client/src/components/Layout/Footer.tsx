@@ -1,6 +1,6 @@
-import type React from "react"
-import { Link } from "react-router-dom"
-import { MapPin, Phone, Mail, Clock } from "lucide-react"
+import type React from "react";
+import { Link } from "react-router-dom";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 const Footer: React.FC = () => {
   return (
@@ -16,8 +16,9 @@ const Footer: React.FC = () => {
               <span className="text-xl font-bold">KulturaView</span>
             </div>
             <p className="text-gray-300 mb-4 max-w-md">
-              Experience the future of beauty with our advanced visualization technology. See your transformation before
-              you commit at Kultura Spa in Pamporovo, Bulgaria.
+              Experience the future of beauty with our advanced visualization
+              technology. See your transformation before you commit at Kultura
+              Spa in Pamporovo, Bulgaria.
             </p>
             <div className="space-y-2">
               <div className="flex items-center space-x-2 text-gray-300">
@@ -26,7 +27,7 @@ const Footer: React.FC = () => {
               </div>
               <div className="flex items-center space-x-2 text-gray-300">
                 <Phone size={16} />
-                <span>+359 XXX XXX XXX</span>
+                <span>+359 899 790 819</span>
               </div>
               <div className="flex items-center space-x-2 text-gray-300">
                 <Mail size={16} />
@@ -34,7 +35,7 @@ const Footer: React.FC = () => {
               </div>
               <div className="flex items-center space-x-2 text-gray-300">
                 <Clock size={16} />
-                <span>Mon-Sun: 9:00 AM - 8:00 PM</span>
+                <span>Mon-Sun: 10:00 AM - 8:30 PM</span>
               </div>
             </div>
           </div>
@@ -44,27 +45,42 @@ const Footer: React.FC = () => {
             <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-gray-300 hover:text-avocado-400 transition-colors">
+                <Link
+                  to="/"
+                  className="text-gray-300 hover:text-avocado-400 transition-colors"
+                >
                   Home
                 </Link>
               </li>
               <li>
-                <Link to="/services" className="text-gray-300 hover:text-avocado-400 transition-colors">
+                <Link
+                  to="/services"
+                  className="text-gray-300 hover:text-avocado-400 transition-colors"
+                >
                   Services
                 </Link>
               </li>
               <li>
-                <Link to="/virtual-try-on" className="text-gray-300 hover:text-avocado-400 transition-colors">
+                <Link
+                  to="/virtual-try-on"
+                  className="text-gray-300 hover:text-avocado-400 transition-colors"
+                >
                   Virtual Try-On
                 </Link>
               </li>
               <li>
-                <Link to="/appointments" className="text-gray-300 hover:text-avocado-400 transition-colors">
+                <Link
+                  to="/appointments"
+                  className="text-gray-300 hover:text-avocado-400 transition-colors"
+                >
                   Book Appointment
                 </Link>
               </li>
               <li>
-                <Link to="/help" className="text-gray-300 hover:text-avocado-400 transition-colors">
+                <Link
+                  to="/help"
+                  className="text-gray-300 hover:text-avocado-400 transition-colors"
+                >
                   Help & FAQ
                 </Link>
               </li>
@@ -85,11 +101,13 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="border-t border-gray-800 mt-8 pt-8 text-center">
-          <p className="text-gray-400">© 2024 KulturaView - Kultura Spa. All rights reserved.</p>
+          <p className="text-gray-400">
+            © 2025 KulturaView - Kultura Spa. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
