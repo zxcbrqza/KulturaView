@@ -12,6 +12,7 @@ app.set("trust proxy", 1);
 const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:3001",
+  "https://kulturaview-production.up.railway.app",
   process.env.FRONTEND_URL || "",
   process.env.RAILWAY_FRONTEND_URL || "", // Optional: fallback Railway frontend
 ].filter(Boolean);
@@ -73,7 +74,8 @@ app.use("/api/reviews", require("./routes/reviews.routes"));
 // ✅ Fallback to React frontend for any other route
 if (process.env.NODE_ENV === "production") {
   app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "../client/build/index.html"));
+    // res.sendFile(path.join(__dirname, "../client/build/index.html"));
+    res.sendFile(path.join(__dirname, "../public/index.html")); 
   });
 }
 
